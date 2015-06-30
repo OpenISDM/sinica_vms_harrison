@@ -1,4 +1,4 @@
-// Include header (put css in header?)
+<?php // Include header (put css in header?) ?>
 
 <head>
 
@@ -6,7 +6,7 @@
 
 <body>
 
-// Write a better body
+<?php // Write a better body ?>
 
 <h1>A Title</h1>
 
@@ -14,6 +14,10 @@
 
 </body>
 
+<?php
+
 // Include sidebar
 
 // Include footer (put css in footer?)
+
+?>
