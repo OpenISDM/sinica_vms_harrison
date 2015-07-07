@@ -128,17 +128,85 @@
 		-moz-box-shadow: inset 0 0 3px 3px rgba(22, 22, 105, 0.5);
 		box-shadow: inset 0 0 3px 3px rgba(22, 22, 105, 0.5);*/
 	}
+	
+	.panel-heading {
+		text-decoration: none;
+	}
+
+	.panel-heading a {
+		cursor: pointer;
+	}
 
 	.panel-heading a:after {
+		cursor: pointer;
 		font-family:'Glyphicons Halflings';
 		content:"\e114";
 		float: right;
-		color: grey;
+		color: white;
 	}
 	
 	.panel-heading a.collapsed:after {
 		content:"\e080";
 	}
+		
+	#sidebar-container {
+		display: none;
+	}
+	
+.sidebar {
+	position: fixed;
+	right: 0;
+	background-color: #000;
+	height: 100%;
+	background-color: #71b1d1;
+	color: white;
+
+	-webkit-padding-start: 0px;
+	-moz-padding-start: 0px;
+	-o-padding-start: 0px;
+	padding-start: 0px;
+}
+
+.sidebar li {
+	display: block;
+	background-color: #71b1d1;
+	color: white;
+	position: relative;
+	height: auto;
+
+	overflow: auto;
+
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+
+
+.sidebar a {
+	text-decoration: none;
+	display: block;
+	background-color: transparent;
+	color: white;
+	padding: 1rem 3rem 1rem 3rem;
+	position: relative;
+	line-height: 1rem;
+}
+
+
+.sidebar li:hover {
+	background-color: #7cc1de;
+}
+
+.sidebar li:active {
+	background-color: white;
+	color: #323232;
+}
+
+.panel-group {
+	margin-bottom: 80px;
+}
 
 	/* Sticky footer styles
 -------------------------------------------------- */
@@ -162,10 +230,10 @@ body {
 .footer-container {
   width: auto;
   max-width: 680px;
-  padding: 0 15px;
+  padding: 0 20px;
 }
 .footer-container .text-muted {
-  margin: 20px 0;
+  margin: 18px 0;
 }
 
 	</style>
@@ -178,7 +246,7 @@ body {
 	<div class="container text-center">
 
 		<div id="second-box">
-			<h1>Welcome Back</h1>
+			<h1 id="second-box-heading">Welcome Back</h1>
 		</div>
 
 	    <div id="main-box" class="jumbotron">
@@ -187,34 +255,57 @@ body {
 			<p><a id="login-btn" href="#" class="btn btn-primary btn-circle btn-lg"><i class="fa fa-bolt fa-lg"></i> Power Up</a></p>
 	    </div>
 
-		<!-- form -->
+		<!-- login form -->
 		<form id="login-form" class="lightboxthing" role="form" onsubmit="return doNothing()">
 		  <div class="form-group">
 		    <label for="email">Email address:</label>
-		    <input type="email" class="form-control" id="email">
+		    <input type="email" class="form-control" id="email" name="email" placeholder="name@domain.com">
 		  </div>
 		  <div class="form-group">
 		    <label for="pwd">Password:</label>
-		    <input type="password" class="form-control" id="pwd">
+		    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="password">
 		  </div>
 		  <div class="checkbox">
-		    <label><input type="checkbox"> Remember me</label>
+		    <label><input type="checkbox" name="checkbox"> Remember me</label>
 		  </div>
 		  <button id="login-form-submit" type="submit" class="btn btn-default">Submit</button>
+		  <a id="register-link" href="#" style="float:right; cursor:pointer;">New User?</a>
+		</form>
+
+		<!-- profile form -->
+		<form id="profile-form" class="lightboxthing" role="form" onsubmit="return doNothing()">
+		  <div class="form-group">
+		    <label for="first-name">First Name:</label>
+		    <input type="text" class="form-control" id="first-name" name="first-name">
+		  </div>
+		  <div class="form-group">
+		    <label for="last-name">Last Name:</label>
+		    <input type="text" class="form-control" id="last-name" name="last-name">
+		  </div>
+		  <div class="form-group">
+		    <label for="bdate">Birthday:</label>
+		    <input type="date" class="form-control" id="bdate" name="bdate">
+		  </div>
+		  <div class="form-group">
+		    <label for="pnumber">Phone Number (Format: XXXX-XXXXXX):</label>
+		    <input type="tel" pattern='\d{4}[\-]\d{6}' class="form-control" id="pnumber" name="pnumber">
+		  </div>
+		  <button id="profile-form-submit" type="submit" class="btn btn-default">Submit</button>
 		</form>
 
 	</div>
 
-	<div id="processes-container" class="container">
+	<div class="row-fluid">
+
+	<div id="processes-container" class="container-fluid col-sm-8 col-sm-offset-1">
 		<div id="processes" class="panel-group">
 		</div>
 	</div>
 
-	<footer class="footer">
-		<div class="footer-container">
-			<p class="text-muted">&copy; Copyright 2015 Harrison Lin</p>
-		</div>
-	</footer>
+	<div id="sidebar-container" class="container-fluid col-sm-3">
+	</div>
+
+	</div>
 
 	<script>
 
@@ -231,6 +322,14 @@ body {
 		    
 			$('#login-form').submit(function() {
 
+				var values = {};
+				$.each($('#login-form').serializeArray(), function(i, field) {
+				    values[field.name] = field.value;
+				});
+
+				if (values['email'].length > 0)
+					$('#second-box-heading').append(", " + values['email'].substring(0, values['email'].indexOf('@')));
+
 				$('#login-form').trigger('close');
 
 				$('#main-box').fadeOut(1000);
@@ -238,13 +337,23 @@ body {
 				$('#second-box').fadeIn(1000, function() {
 					$('#second-box').fadeOut(1000, function() {
 
+						$('#sidebar-container').append('<ul class="sidebar" style="">'
+													   +  '<li>'
+													     +  '<a id="edit-profile" href="#" onclick="profiledialog()">'
+														   +  '<h4> <i class="fa fa-user"></i> Edit Profile </h4>'
+														 +  '</a>'
+													   +  '</li>'
+													 + '</div>');
+
+						$('#sidebar-container').fadeIn(1000);
+
 						var $processes = $('#processes');
 
 						for (i = 1; i <= 5; i++) {
 							$processes.append('<div id="processdiv ' + i + '" class="panel panel-primary" >'
 												+ '<div class="panel-heading">'
 												  + '<h4 class="panel-title">'
-													+ '<a data-toggle="collapse" data-target="#collapse'+i+'" href="#collapse'+i+'" class="collapsed">'
+													+ '<a data-toggle="collapse" data-target="#collapse'+i+'" class="collapsed">'
 													  + 'Process ' + i
 											        + '</a>' 
 												  + '</h4>'
@@ -262,7 +371,7 @@ body {
 						for (i = 1; i <= 5; i++) {
 							var lorem = new Lorem;
 							lorem.type = Lorem.TEXT;
-							lorem.query = '1p';
+							lorem.query = '7s';
 							lorem.createLorem(document.getElementById('lorem'+i));
 						}
 
@@ -283,8 +392,35 @@ body {
 				return false;
 			}
 
+			function profiledialog() {
+				$('#profile-form').lightbox_me({
+					centered: true, 
+					onLoad: function() { 
+					$('#profile-form').find('input:first').focus();
+					}
+				});
+				$('#edit-profile').preventDefault();
+			}
+
+			$('#profile-form').submit(function () {
+				$('#profile-form').trigger('close');
+			});
+
+			$('#register-link').click(function(e) {
+				alert("redirect to register");
+			});
+
 	</script>
 
 
 </body>
+
+	<footer class="footer">
+		
+		<div class="footer-container">
+			<p class="text-muted">&copy; Copyright 2015 Harrison Lin</p>
+		</div>
+		
+	</footer>
+
 </html>                                		
