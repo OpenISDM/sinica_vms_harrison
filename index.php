@@ -3,15 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Volunteer Home Page</title>
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
-	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
+	<!-- Bootstrap CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!-- custom Bootstrap css theme -->
+	<link rel="stylesheet" type="text/css" href="style/css/journal/bootstrap.min.css">
+	<!-- Font-Awesome CDN -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">	
 
+	<!-- Bootstrap and JQuery CDN -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="jquery.lightbox_me.js" type="text/javascript" charset="utf-8"></script>
-	<script src="TweenMax.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- Library for Lightboxing -->
+	<script src="style/js/jquery.lightbox_me.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- Library for Tweening -->
+	<script src="style/js/TweenMax.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- Library for Lorem Ipsum -->
+	<script src="style/js/loremjs/lorem.js" type="text/javascript" charset="utf-8"></script>
+
+
 	<style type="text/css">
 
 	.btn-circle.btn-lg {
@@ -116,6 +129,17 @@
 		box-shadow: inset 0 0 3px 3px rgba(22, 22, 105, 0.5);*/
 	}
 
+	.panel-heading a:after {
+		font-family:'Glyphicons Halflings';
+		content:"\e114";
+		float: right;
+		color: grey;
+	}
+	
+	.panel-heading a.collapsed:after {
+		content:"\e080";
+	}
+
 	/* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -217,10 +241,29 @@ body {
 						var $processes = $('#processes');
 
 						for (i = 1; i <= 5; i++) {
-							$processes.append('<div id="processdiv ' + i + '" class="panel panel-primary" onclick="poke()">'
-											  + '<div class="panel-heading">Process ' + i + '</div>'
-											  + '<div class="panel-body">Description for process ' + i + '</div>'
-											  + '</div>');
+							$processes.append('<div id="processdiv ' + i + '" class="panel panel-primary" >'
+												+ '<div class="panel-heading">'
+												  + '<h4 class="panel-title">'
+													+ '<a data-toggle="collapse" data-target="#collapse'+i+'" href="#collapse'+i+'" class="collapsed">'
+													  + 'Process ' + i
+											        + '</a>' 
+												  + '</h4>'
+											    + '</div>'
+											  + '<div id="collapse' + i + '" class="panel-collapse collapse">'
+												+ '<div class="panel-body">'
+												  + '<img src="http://lorempixel.com/200/100/city/'+i+'" class="img-responsive img-thumbnail" width="200" height="100">'
+												  + '<h4>Description for process ' + i + ': </h4>'
+												  + '<p id="lorem'+i+'"></p>'
+												+ '</div>'
+											  + '</div>'
+											+ '</div>');
+						}
+
+						for (i = 1; i <= 5; i++) {
+							var lorem = new Lorem;
+							lorem.type = Lorem.TEXT;
+							lorem.query = '1p';
+							lorem.createLorem(document.getElementById('lorem'+i));
 						}
 
 						$('.panel').each(function(index, element) {
@@ -238,10 +281,6 @@ body {
 
 			function doNothing() {
 				return false;
-			}
-	
-			function poke() {
-				alert("poke!");
 			}
 
 	</script>
