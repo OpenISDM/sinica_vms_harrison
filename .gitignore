@@ -41,3 +41,13 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+
+# vim swp files
+*.swp
+
+# Windows Temp Files
+*~
+
+# MySQL Workbench Backup Files
+*.mwb.bak
