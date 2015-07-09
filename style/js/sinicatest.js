@@ -58,6 +58,9 @@ $('#login-form').submit(function() {
 
 			// load processes
 			var $processes = $('#processes');
+
+			$processes.append('<h1 class="not-shown">View Processes</h1>');
+
 			for (i = 1; i <= 5; i++) {
 				$processes.append('<div id="processdiv ' + i + '" class="panel panel-primary" >'
 									+ '<div class="panel-heading">'
@@ -69,7 +72,7 @@ $('#login-form').submit(function() {
 									+ '</div>'
 								  + '<div id="collapse' + i + '" class="panel-collapse collapse">'
 									+ '<div class="panel-body">'
-									  + '<img src="http://lorempixel.com/200/100/city/'+i+'" class="img-responsive img-thumbnail" width="200" height="100">'
+									  + '<img src="http://lorempixel.com/150/75/city/'+i+'" class="img-responsive img-thumbnail" width="200" height="100">'
 									  + '<h4>Description for process ' + i + ': </h4>'
 									  + '<p id="lorem'+i+'"></p>'
 									+ '</div>'
@@ -85,12 +88,17 @@ $('#login-form').submit(function() {
 				lorem.createLorem(document.getElementById('lorem'+i));
 			}
 
-			// fade in processes sequentially
-			$('.panel').each(function(index, element) {
-				// set delay
-				setTimeout(function(){
-					$(element).fadeIn(800);
-				}, index * 600);
+			// fade in heading
+			$('h1').fadeIn(800, function() {
+
+				// fade in processes sequentially
+				$('.panel').each(function(index, element) {
+					// set delay
+					setTimeout(function(){
+						$(element).fadeIn(800);
+					}, (index+1) * 600);
+				});
+
 			});
 
 		});
@@ -104,17 +112,28 @@ function doNothing() {
 
 /* TODO replace with loading of processes */
 function loadProcesses() {
-	alert('load processes');
+
+	if (!$('#processes').is(":visible")) {
+		$('#edit-profile').fadeOut(500, function(){
+			$('#processes').fadeIn(500);
+		});
+	}
 }
 
 /* TODO replace with loading of an edit profile panel */
 function loadEditProfile() {
-	$('#profile-form').lightbox_me({
+	/*$('#profile-form').lightbox_me({
 		centered: true, 
 		onLoad: function() { 
 		$('#profile-form').find('input:first').focus();
 		}
-	});
+	});*/
+
+	if (!$('#edit-profile').is(":visible")) {
+		$('#processes').fadeOut(500, function(){
+			$('#edit-profile').fadeIn(500);
+		});
+	}
 }
 
 /* closes profile-form on submit */

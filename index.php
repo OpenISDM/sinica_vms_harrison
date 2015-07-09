@@ -59,28 +59,7 @@
 		  </div>
 		  <button id="login-form-submit" type="submit" class="btn btn-default">Submit</button>
 		  <a id="register-link" href="#" style="float:right; cursor:pointer;">New User?</a>
-		</form>
-
-		<!-- profile form -->
-		<form id="profile-form" class="lightboxthing" role="form" onsubmit="return doNothing()">
-		  <div class="form-group">
-		    <label for="first-name">First Name:</label>
-		    <input type="text" class="form-control" id="first-name" name="first-name">
-		  </div>
-		  <div class="form-group">
-		    <label for="last-name">Last Name:</label>
-		    <input type="text" class="form-control" id="last-name" name="last-name">
-		  </div>
-		  <div class="form-group">
-		    <label for="bdate">Birthday:</label>
-		    <input type="date" class="form-control" id="bdate" name="bdate">
-		  </div>
-		  <div class="form-group">
-		    <label for="pnumber">Phone Number (Format: XXXX-XXXXXX):</label>
-		    <input type="tel" pattern='\d{4}[\-]\d{6}' class="form-control" id="pnumber" name="pnumber">
-		  </div>
-		  <button id="profile-form-submit" type="submit" class="btn btn-default">Submit</button>
-		</form>
+		</form>	
 
 	</div>
 
@@ -88,6 +67,30 @@
 
 		<div id="processes-container" class="container-fluid col-sm-8 col-sm-offset-1">
 			<div id="processes" class="panel-group">
+			</div>
+			
+			<div id="edit-profile" class="not-shown">
+				<!-- profile form -->
+				<h1>Edit Profile</h1>
+				<form id="profile-form" class="" role="form" onsubmit="return doNothing()">
+				  <div class="form-group">
+					<label for="first-name">First Name:</label>
+					<input type="text" class="form-control" id="first-name" name="first-name">
+				  </div>
+				  <div class="form-group">
+					<label for="last-name">Last Name:</label>
+					<input type="text" class="form-control" id="last-name" name="last-name">
+				  </div>
+				  <div class="form-group">
+					<label for="bdate">Birthday:</label>
+					<input type="date" class="form-control" id="bdate" name="bdate">
+				  </div>
+				  <div class="form-group">
+					<label for="pnumber">Phone Number (Format: XXXX-XXXXXX):</label>
+					<input type="tel" pattern='\d{4}[\-]\d{6}' class="form-control" id="pnumber" name="pnumber">
+				  </div>
+				  <button id="profile-form-submit" type="submit" class="btn btn-default">Submit</button>
+				</form>
 			</div>
 		</div>
 

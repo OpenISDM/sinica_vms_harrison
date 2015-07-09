@@ -140,6 +140,10 @@ form button.btn-default:hover {
     user-select: none;
 }
 
+.not-shown {
+	display: none;
+}
+
 /* sidebar styles
 -------------------------------------------------- */
 		
