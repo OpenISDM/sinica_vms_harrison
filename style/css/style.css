@@ -154,7 +154,6 @@ form button.btn-default:hover {
 .sidebar {
 	position: fixed;
 	right: 0;
-	background-color: #000;
 	height: 100%;
 	background-color: #71b1d1;
 	color: white;
@@ -167,7 +166,6 @@ form button.btn-default:hover {
 
 .sidebar li {
 	display: block;
-	background-color: #71b1d1;
 	color: white;
 	position: relative;
 	height: auto;
@@ -194,7 +192,6 @@ form button.btn-default:hover {
 
 
 .sidebar li:hover {
-	background-color: #7cc1de;
 	color: white;
 }
 
@@ -218,7 +215,31 @@ form button.btn-default:hover {
 
 .sidebar li a h4 {
 	color: inherit;
-} 
+}
+
+.admin-item {
+	border-top: 2px solid white;
+}
+
+.last-item {
+	border-bottom: 2px solid white;
+}
+
+.admin-inactive {
+	background-color: #71b1d1;
+}
+
+.admin-inactive:hover {
+	background-color: #7cc1de;
+}
+
+.admin-active {
+	background-color: #6B79D8;
+}
+
+.admin-active:hover {
+	background-color: #97A1E4;
+}
 
 /* Sticky footer styles
 -------------------------------------------------- */

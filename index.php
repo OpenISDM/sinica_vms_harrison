@@ -39,7 +39,7 @@
 		</div>
 
 	    <div id="main-box" class="jumbotron">
-			<h1>Welcome, Volunteer!</h1>
+			<h1>Welcome, User!</h1>
 			<p>Log in to join a process!</p>
 			<p><a id="login-btn" href="#" class="btn btn-primary btn-circle btn-lg"><i class="fa fa-bolt fa-lg"></i> Power Up</a></p>
 	    </div>
@@ -91,6 +91,10 @@
 				  </div>
 				  <button id="profile-form-submit" type="submit" class="btn btn-default">Submit</button>
 				</form>
+			</div>
+			
+			<div id="view-profile" class="not-shown">
+				<h1>View Profile</h1>
 			</div>
 		</div>
 
